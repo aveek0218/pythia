@@ -987,6 +987,17 @@ void PrettyPrinterVisitor::visit(IntGeneratorOp* op)
 		<< ")" << endl;
 }
 
+void PrettyPrinterVisitor::visit(LongGeneratorOp* op)
+{
+	printIdent();
+	cout << "LongGenerator ("
+		<< "tuples=" << addcommas(op->totaltuples) << " (" 
+		<< addcommas(op->totaltuples * op->tuplewidth / 1024ull / 1024ull)
+		<< " MB) per thread, "
+		<< "width=" << op->tuplewidth << " bytes"
+		<< ")" << endl;
+}
+
 void PrettyPrinterVisitor::visit(PerfCountPrinter* op)
 {
 	printIdent();
