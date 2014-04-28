@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2009, Pythia authors (see AUTHORS file).
  * All rights reserved.
@@ -70,6 +69,7 @@ class ScanOp;
 class ParallelScanOp;
 class PartitionedScanOp;
 class IntGeneratorOp;
+class LongGeneratorOp;
 #ifdef ENABLE_HDF5 
 class ScanHdf5Op;
 #ifdef ENABLE_FASTBIT
@@ -118,6 +118,7 @@ class Visitor {
 		virtual void visit(ParallelScanOp* op) = 0;
 		virtual void visit(PartitionedScanOp* op) = 0;
 		virtual void visit(IntGeneratorOp* op) = 0;
+		virtual void visit(LongGeneratorOp* op) = 0;
 #ifdef ENABLE_HDF5
 		virtual void visit(ScanHdf5Op* op) = 0;
 #ifdef ENABLE_FASTBIT
