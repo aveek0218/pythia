@@ -1,4 +1,3 @@
-
 .PHONY: all clean doc distclean unit_tests drivers tags
 
 include system.inc
@@ -77,6 +76,7 @@ FILES = schema.o hash.o \
 	operators/checker_callstate.o \
 	operators/printer_tuplecount.o \
 	operators/generator_int.o \
+	operators/generator_long.o \
 	operators/printer_perfcnt.o \
 	operators/bitentropy.cpp \
 	operators/threadidprepend.cpp \
