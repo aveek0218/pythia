@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2009, Pythia authors (see AUTHORS file).
  * All rights reserved.
@@ -1557,6 +1556,47 @@ class IntGeneratorOp : public virtual ZeroInputOp
 {
 	public:
 		IntGeneratorOp()
+			: tuplewidth(0), totaltuples(0)
+		{ }
+
+		friend class PrettyPrinterVisitor;
+		virtual void accept(Visitor* v) { v->visit(this); }
+
+		virtual void init(libconfig::Config& root, libconfig::Setting& node);
+		virtual void threadInit(unsigned short threadid);
+		virtual GetNextResultT getNext(unsigned short threadid);
+		virtual void threadClose(unsigned short threadid);
+
+	private:
+		/**
+		 * Returns next tuple, or NULL if this thread has produced more than 
+		 * \a totaltuples already.
+		 */
+		void* produceOne(unsigned short threadid);
+
+		vector<char*> scratchspace;
+
+		vector<Page*> output;
+		vector<CtLong> producedsofar;
+		unsigned short tuplewidth;
+		CtLong totaltuples;
+};
+
+/**
+ * A generator class that outputs a configurable amount of (long value)
+ * tuples.
+ *
+ * Parameters:
+ * sizeinmb = <literal>
+ * width = <literal>
+ *
+ * \a tuples specifies the number of tuples each calling thread will receive.
+ * \a width specifies the width (in bytes) of each tuple, which must be at least 4.
+ */
+class LongGeneratorOp : public virtual ZeroInputOp
+{
+	public:
+		LongGeneratorOp()
 			: tuplewidth(0), totaltuples(0)
 		{ }
 
