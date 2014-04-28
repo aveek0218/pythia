@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2011, Pythia authors (see AUTHORS file).
  * All rights reserved.
@@ -86,6 +85,7 @@ void constructsubtree(
 			||  type == "partitionedscan"
 			||  type == "parallelscan"
 			||  type == "generator_int"
+			||  type == "generator_long"
 #ifdef ENABLE_HDF5
 			||  type == "hdf5scan"
 #ifdef ENABLE_FASTBIT
@@ -109,6 +109,8 @@ void constructsubtree(
 			tmp = new ParallelScanOp();
 		else if (type == "generator_int")
 			tmp = new IntGeneratorOp();
+		else if (type == "generator_long")
+			tmp = new LongGeneratorOp();
 #ifdef ENABLE_HDF5
 		else if (type == "hdf5scan")
 			tmp = new ScanHdf5Op();
