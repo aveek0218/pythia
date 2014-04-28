@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2009, Pythia authors (see AUTHORS file).
  * All rights reserved.
@@ -82,6 +81,7 @@ class SimpleVisitor : public Visitor {
 		void visit(ParallelScanOp* op) { this->simplevisit(op); }
 		void visit(PartitionedScanOp* op) { this->simplevisit(op); }
 		void visit(IntGeneratorOp* op) { this->simplevisit(op); }
+		void visit(LongGeneratorOp* op) { this->simplevisit(op); }
 #ifdef ENABLE_HDF5
 		void visit(ScanHdf5Op* op) { this->simplevisit(op); }
 #ifdef ENABLE_FASTBIT
@@ -181,6 +181,7 @@ class PrettyPrinterVisitor : public Visitor {
 #endif
 
 		void visit(IntGeneratorOp* op);
+		void visit(LongGeneratorOp* op);
 
 	private:
 		void printSortMergeJoin(SortMergeJoinOp* op);
